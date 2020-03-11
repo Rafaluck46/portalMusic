@@ -10,8 +10,8 @@ services:
       #  environment:
       #   - MONGO_INITDB_ROOT_USERNAME=root
       #   - MONGO_INITDB_ROOT_PASSWORD=root
-   nodepresentation:
-      image: nodepresentation:1.0.0
+   portalmusic:
+      image: portalmusic:1.0.0
       restart: always
       depends_on:
          - mongo
