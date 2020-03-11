@@ -8,12 +8,10 @@ module.exports = class AlbumService {
     async cadastrarAlbum(album) {
         let model = new Model();
         try {
-            
             model.nome = album.nome;
-            model.anoLancamento = album.anoLancamento;
+            model.dataLancamento = album.dataLancamento;
             model.quantidadeFaixas = album.quantidadeFaixas;
             await model.save();
-
         } catch (err) {
             console.log(err);
         }
