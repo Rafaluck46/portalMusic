@@ -7,8 +7,12 @@ module.exports = class ArtistaService {
     }
 
     async cadastrarArtista(artista) {
+        if (!artista) throw 'artista vazio';
         let model = new Model();
-        await model.save(artista);
+
+        model.nome = artista.nome;
+        
+        await model.save();
     }
 
     async recuperarArtistas() {

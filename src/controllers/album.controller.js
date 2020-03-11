@@ -10,16 +10,20 @@ module.exports = class AlbumController {
         let album = req.body;
         try {
             await albumService.cadastrarAlbum(album);
-        } catch (err) {
-            console.log(err);
-        } finally {
             res.send();
+        } catch (err) {
+            res.status(500);
+            res.send({ message: err });
         }
-        
     }
 
     static async recuperarAlbums(req, res) {
-        res.send(await albumService.recuperarAlbums());
+        try {
+            res.send(await albumService.recuperarAlbums());
+        } catch (err) {
+            res.status(500);
+            res.send({ message: err });
+        }
     }
 
 }

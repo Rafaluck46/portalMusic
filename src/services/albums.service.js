@@ -6,15 +6,16 @@ module.exports = class AlbumService {
     }
 
     async cadastrarAlbum(album) {
+
+        if (!album) throw 'album vazio';
+
         let model = new Model();
-        try {
-            model.nome = album.nome;
-            model.dataLancamento = album.dataLancamento;
-            model.quantidadeFaixas = album.quantidadeFaixas;
-            await model.save();
-        } catch (err) {
-            console.log(err);
-        }
+
+        model.nome = album.nome;
+        model.dataLancamento = album.dataLancamento;
+        model.quantidadeFaixas = album.quantidadeFaixas;
+        
+        await model.save();
     }
 
     async recuperarAlbums() {
