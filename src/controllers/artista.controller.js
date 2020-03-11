@@ -1,22 +1,20 @@
-let Artista = require('../entities/Artista');
+let ArtistaService = require('../services/artista.service');
+const artistaService = new ArtistaService();
 
 module.exports = class ArtistaController {
 
-    constructor() {
+    constructor() { }
 
+    static async cadastrarArtista(req, res) {
+        let artista = req.body;
+        artistaService.cadastrarArtista(artista);
+        res.send();
     }
 
-    cadastrarArtista(req, res) {
-        if(req.body)
-            Object.assign(new Artista, req.body);
-
-        
+    static async recuperarArtistas(req, res) {
+        res.send(await artistaService.recuperarArtistas());
     }
-
-    recuperarArtistas(req, res) {
-        throw 'Not implemented';
-    }
-
+    
 }
 
 
