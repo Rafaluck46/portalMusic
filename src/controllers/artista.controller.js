@@ -1,5 +1,6 @@
 let ArtistaService = require('../services/artista.service');
 const artistaService = new ArtistaService();
+const os = require('os');
 
 module.exports = class ArtistaController {
 
@@ -9,19 +10,24 @@ module.exports = class ArtistaController {
         let artista = req.body;
         try {
             artistaService.cadastrarArtista(artista);
-            res.send();
+            res.status(200);
+            res.send({ message: os.hostname() })
         } catch (err) {
             res.status(500);
-            res.send({ message: err })
+            res.send({ message: `os name: ${os.hostname()} \n ${err}` });
         }
     }
 
     static async recuperarArtistas(req, res) {
         try {
-            res.send(await artistaService.recuperarArtistas());
+            res.status(200);
+            res.send({
+                message: os.hostname(),
+                object: await artistaService.recuperarArtistas()
+            });
         } catch (err) {
             res.status(500);
-            res.send({ message: err })
+            res.send({ message: `os name: ${os.hostname()} \n ${err}` });
         }
     }
 

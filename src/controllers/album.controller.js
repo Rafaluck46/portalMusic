@@ -1,6 +1,7 @@
 
 let AlbumService = require('./../services/albums.service');
 const albumService = new AlbumService();
+const os = require('os');
 
 module.exports = class AlbumController {
 
@@ -10,19 +11,24 @@ module.exports = class AlbumController {
         let album = req.body;
         try {
             await albumService.cadastrarAlbum(album);
-            res.send();
+            res.status(200);
+            res.send({ message: os.hostname() })
         } catch (err) {
             res.status(500);
-            res.send({ message: err });
+            res.send({ message: `os name: ${os.hostname()} \n ${err}` });
         }
     }
 
     static async recuperarAlbums(req, res) {
         try {
-            res.send(await albumService.recuperarAlbums());
+            res.status(200);
+            res.send({
+                message: os.hostname(),
+                object: await albumService.recuperarAlbums()
+            });
         } catch (err) {
             res.status(500);
-            res.send({ message: err });
+            res.send({ message: `os name: ${os.hostname()} \n ${err}` });
         }
     }
 

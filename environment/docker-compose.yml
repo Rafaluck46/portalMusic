@@ -12,8 +12,11 @@ services:
       #   - MONGO_INITDB_ROOT_PASSWORD=root
    portalmusic:
       image: portalmusic:1.0.0
+      deploy:
+         replicas: 3
       restart: always
       depends_on:
          - mongo
       ports:
          - 3000:3000
+     
