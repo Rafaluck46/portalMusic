@@ -18,7 +18,7 @@ const _connectionEvents = () => {
 
 module.exports = {
     initConnection: () => {
-        mongoose.connect('mongodb://localhost/portalMusic', {
+        mongoose.connect('mongodb://mongo/portalMusic', {
             useNewUrlParser: true});
         _connectionEvents();
     }

@@ -1,10 +1,19 @@
- mongo:
-    image: mongo
-    restart: always
-    ports: 
-     - 27017:27017
-    volumes:
-     - ./dbmongo:/data/db
-   #  environment:
-   #   - MONGO_INITDB_ROOT_USERNAME=root
-   #   - MONGO_INITDB_ROOT_PASSWORD=root
+version: "3"
+services:
+   mongo:
+      image: mongo
+      restart: always
+      ports:
+         - 27017:27017
+      # volumes:
+      #  - ./dbmongo:/data/db
+      #  environment:
+      #   - MONGO_INITDB_ROOT_USERNAME=root
+      #   - MONGO_INITDB_ROOT_PASSWORD=root
+   nodepresentation:
+      image: nodepresentation:1.0.0
+      restart: always
+      depends_on:
+         - mongo
+      ports:
+         - 3000:3000
